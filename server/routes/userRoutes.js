@@ -11,8 +11,6 @@ userRouter.post("/login", userController.login);
 
 userRouter.post("/register", userController.register);
 
-userRouter.post("/forgotpassword", userController.forgotpassword);
-
 userRouter.post("/resetpassword/:id/:token", userController.resetpassword);
 
 userRouter.put("/updateprofile", auth, userController.updateprofile);

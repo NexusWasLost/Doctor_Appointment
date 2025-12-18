@@ -3,8 +3,6 @@ import "./styles/app.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
 import { Toaster } from "react-hot-toast";
 import { Protected, Public, Admin } from "./middleware/route";
 import React, { lazy, Suspense } from "react";
@@ -31,8 +29,8 @@ function App() {
 
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
+          {/* <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
+          {/* <Route path="/resetpassword/:id/:token" element={<ResetPassword />} /> */}
           <Route
             path="/register"
             element={

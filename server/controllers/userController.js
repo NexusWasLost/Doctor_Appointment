@@ -157,48 +157,6 @@ const deleteuser = async (req, res) => {
   }
 };
 
-const forgotpassword = async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({ email });
-    // console.log(user,email);
-    if (!user) {
-      return res.status(404).send({ status: "User not found" });
-    }
-
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1m" });
-// console.log(token)
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "tarun.kumar.csbs25@heritageit.edu.in",
-        pass: "qfhv wohg gjtf ikvz",
-      },
-    });
-    // console.log(transporter);
-
-    const mailOptions = {
-      from: "tarun.kumar.csbs25@heritageit.edu.in",
-      to: email,
-      subject: "Reset Password Link",
-      text: `https://appointmentdoctor.netlify.app/resetpassword/${user._id}/${token}`,
-    };
-    // console.log(mailOptions);
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).send({ status: "Error sending email" });
-      } else {
-        return res.status(200).send({ status: "Email sent successfully" });
-      }
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send({ status: "Internal Server Error" });
-  }
-};
-
 const resetpassword = async (req, res) => {
   try {
     const { id, token } = req.params;
@@ -235,6 +193,5 @@ module.exports = {
   updateprofile,
   deleteuser,
   changepassword,
-  forgotpassword,
   resetpassword,
 };

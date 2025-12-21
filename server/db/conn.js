@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+// const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 require("dotenv").config();
@@ -13,7 +13,6 @@ const client = mongoose
   })
   .catch((error) => {
     console.log("Error: ", error);
-
     return error;
   });
 
